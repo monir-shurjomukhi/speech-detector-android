@@ -153,7 +153,7 @@ public class SpeechActivity extends Activity
 
     String actualModelFilename = MODEL_FILENAME.split("file:///android_asset/", -1)[1];
     try {
-      tfLite = new Interpreter(loadModelFile(getAssets(), actualModelFilename), null);
+      tfLite = new Interpreter(loadModelFile(getAssets(), actualModelFilename));
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
