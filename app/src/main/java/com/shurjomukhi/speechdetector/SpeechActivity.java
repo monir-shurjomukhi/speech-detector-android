@@ -1,34 +1,3 @@
-/*
- * Copyright 2019 The TensorFlow Authors. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *       http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/* Demonstrates how to run an audio recognition model in Android.
-
-This example loads a simple speech recognition model trained by the tutorial at
-https://www.tensorflow.org/tutorials/audio_training
-
-The model files should be downloaded automatically from the TensorFlow website,
-but if you have a custom model you can update the LABEL_FILENAME and
-MODEL_FILENAME constants to point to your own files.
-
-The example application displays a list view with all of the known audio labels,
-and highlights each one when it thinks it has detected one through the
-microphone. The averaging of results to give a more reliable signal happens in
-the RecognizeCommands helper class.
-*/
-
 package com.shurjomukhi.speechdetector;
 
 import android.app.Activity;
@@ -184,7 +153,7 @@ public class SpeechActivity extends Activity
 
     String actualModelFilename = MODEL_FILENAME.split("file:///android_asset/", -1)[1];
     try {
-      tfLite = new Interpreter(loadModelFile(getAssets(), actualModelFilename));
+      tfLite = new Interpreter(loadModelFile(getAssets(), actualModelFilename), null);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
@@ -238,7 +207,7 @@ public class SpeechActivity extends Activity
         });
     sheetBehavior.setHideable(false);
 
-    sheetBehavior.setBottomSheetCallback(
+    sheetBehavior.addBottomSheetCallback(
         new BottomSheetBehavior.BottomSheetCallback() {
           @Override
           public void onStateChanged(@NonNull View bottomSheet, int newState) {
