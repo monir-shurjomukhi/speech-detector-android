@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.speech;
+package com.shurjomukhi.speechdetector;
 
 import android.util.Log;
 import android.util.Pair;

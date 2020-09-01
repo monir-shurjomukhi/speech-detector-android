@@ -29,7 +29,7 @@ microphone. The averaging of results to give a more reliable signal happens in
 the RecognizeCommands helper class.
 */
 
-package org.tensorflow.lite.examples.speech;
+package com.shurjomukhi.speechdetector;
 
 import android.app.Activity;
 import android.content.pm.PackageManager;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.tensorflow.lite.examples.speech">
+    package="com.shurjomukhi.speechdetector">
 
     <uses-sdk />
 
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme.SpeechCommands">
 
         <activity
-            android:name=".SpeechActivity"
+            android:name="com.shurjomukhi.speechdetector.SpeechActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
