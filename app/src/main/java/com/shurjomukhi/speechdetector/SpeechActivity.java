@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import android.util.Log;
 import android.view.View;
@@ -39,7 +40,7 @@ import org.tensorflow.lite.Interpreter;
  * An activity that listens for audio and then uses a TensorFlow model to detect particular classes,
  * by default a small set of action words.
  */
-public class SpeechActivity extends Activity
+public class SpeechActivity extends AppCompatActivity
     implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
   private static final String TAG = "SpeechActivity";
@@ -120,7 +121,7 @@ public class SpeechActivity extends Activity
   protected void onCreate(Bundle savedInstanceState) {
     // Set up the UI.
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.tfe_sc_activity_speech);
+    setContentView(R.layout.activity_speech);
 
     // Load the labels for the model, but only display those that don't start
     // with an underscore.
@@ -466,7 +467,7 @@ public class SpeechActivity extends Activity
                 }
 
                 if (selectedTextView != null) {
-                  selectedTextView.setBackgroundResource(R.drawable.round_corner_text_bg_selected);
+                  //selectedTextView.setBackgroundResource(R.drawable.round_corner_text_bg_selected);
                   final String score = Math.round(result.score * 100) + "%";
                   Log.d(TAG, "run: score  = " + score);
                   selectedTextView.setText(selectedTextView.getText() + "\n" + score);
@@ -479,8 +480,8 @@ public class SpeechActivity extends Activity
                           String origionalString =
                               selectedTextView.getText().toString().replace(score, "").trim();
                           selectedTextView.setText(origionalString);
-                          selectedTextView.setBackgroundResource(
-                              R.drawable.round_corner_text_bg_unselected);
+                          /*selectedTextView.setBackgroundResource(
+                              R.drawable.round_corner_text_bg_unselected);*/
                           selectedTextView.setTextColor(
                               getResources().getColor(android.R.color.darker_gray));
                         }
@@ -554,7 +555,6 @@ public class SpeechActivity extends Activity
   @Override
   protected void onResume() {
     super.onResume();
-
     startBackgroundThread();
   }
 
@@ -562,5 +562,9 @@ public class SpeechActivity extends Activity
   protected void onStop() {
     super.onStop();
     stopBackgroundThread();
+  }
+
+  public void appleClick(View view) {
+    ListeningDialogFragment.newInstance().show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
   }
 }
