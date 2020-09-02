@@ -36,8 +36,8 @@ public class ListeningDialogFragment extends DialogFragment {
       @Override
       public void onClick(View view) {
         animationView.setAnimation(R.raw.trophy);
-        animationView.playAnimation();
         animationView.setSpeed(2.0f);
+        animationView.playAnimation();
       }
     });
   }
