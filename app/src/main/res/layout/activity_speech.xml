@@ -23,10 +23,10 @@
 
       <TextView
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-        android:textColor="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/speech_detector" />
+        android:text="@string/speech_detector"
+        android:textColor="@android:color/white" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
@@ -207,11 +207,11 @@
 
         <LinearLayout
           android:id="@+id/apple"
-          android:layout_margin="4dp"
-          android:background="@drawable/round_corner_text_bg_unselected"
           android:layout_width="0dp"
           android:layout_height="match_parent"
+          android:layout_margin="4dp"
           android:layout_weight="1"
+          android:background="@drawable/round_corner_text_bg_unselected"
           android:onClick="appleClick"
           android:orientation="vertical">
 
@@ -232,11 +232,12 @@
         </LinearLayout>
 
         <LinearLayout
-          android:layout_margin="4dp"
-          android:background="@drawable/round_corner_text_bg_unselected"
           android:layout_width="0dp"
           android:layout_height="match_parent"
+          android:layout_margin="4dp"
           android:layout_weight="1"
+          android:background="@drawable/round_corner_text_bg_unselected"
+          android:onClick="birdClick"
           android:orientation="vertical">
 
           <ImageView
@@ -263,11 +264,12 @@
         android:weightSum="2">
 
         <LinearLayout
-          android:layout_margin="4dp"
-          android:background="@drawable/round_corner_text_bg_unselected"
           android:layout_width="0dp"
           android:layout_height="match_parent"
+          android:layout_margin="4dp"
           android:layout_weight="1"
+          android:background="@drawable/round_corner_text_bg_unselected"
+          android:onClick="catClick"
           android:orientation="vertical">
 
           <ImageView
@@ -287,11 +289,12 @@
         </LinearLayout>
 
         <LinearLayout
-          android:layout_margin="4dp"
-          android:background="@drawable/round_corner_text_bg_unselected"
           android:layout_width="0dp"
           android:layout_height="match_parent"
+          android:layout_margin="4dp"
           android:layout_weight="1"
+          android:background="@drawable/round_corner_text_bg_unselected"
+          android:onClick="dogClick"
           android:orientation="vertical">
 
           <ImageView

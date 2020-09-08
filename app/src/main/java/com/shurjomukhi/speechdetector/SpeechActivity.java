@@ -22,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.shurjomukhi.speechdetector.eventbus.SpeechEvent;
+import com.shurjomukhi.speechdetector.util.Constants;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,6 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
+
+import org.greenrobot.eventbus.EventBus;
 import org.tensorflow.lite.Interpreter;
 
 /**
@@ -470,6 +475,7 @@ public class SpeechActivity extends AppCompatActivity
                   //selectedTextView.setBackgroundResource(R.drawable.round_corner_text_bg_selected);
                   final String score = Math.round(result.score * 100) + "%";
                   Log.d(TAG, "run: score  = " + score);
+                  EventBus.getDefault().post(new SpeechEvent(result.foundCommand, score));
                   selectedTextView.setText(selectedTextView.getText() + "\n" + score);
                   selectedTextView.setTextColor(
                       getResources().getColor(android.R.color.holo_orange_light));
@@ -477,9 +483,9 @@ public class SpeechActivity extends AppCompatActivity
                       new Runnable() {
                         @Override
                         public void run() {
-                          String origionalString =
+                          String originalString =
                               selectedTextView.getText().toString().replace(score, "").trim();
-                          selectedTextView.setText(origionalString);
+                          selectedTextView.setText(originalString);
                           /*selectedTextView.setBackgroundResource(
                               R.drawable.round_corner_text_bg_unselected);*/
                           selectedTextView.setTextColor(
@@ -565,6 +571,18 @@ public class SpeechActivity extends AppCompatActivity
   }
 
   public void appleClick(View view) {
-    ListeningDialogFragment.newInstance().show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+    ListeningDialogFragment.newInstance(Constants.APPLE).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+  }
+
+  public void birdClick(View view) {
+    ListeningDialogFragment.newInstance(Constants.BIRD).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+  }
+
+  public void catClick(View view) {
+    ListeningDialogFragment.newInstance(Constants.CAT).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+  }
+
+  public void dogClick(View view) {
+    ListeningDialogFragment.newInstance(Constants.DOG).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
   }
 }
