@@ -2,9 +2,9 @@ package com.shurjomukhi.speechdetector.eventbus;
 
 public class SpeechEvent {
   private String text;
-  private String score;
+  private float score;
 
-  public SpeechEvent(String text, String score) {
+  public SpeechEvent(String text, float score) {
     this.text = text;
     this.score = score;
   }
@@ -25,11 +25,11 @@ public class SpeechEvent {
     this.text = text;
   }
 
-  public String getScore() {
+  public float getScore() {
     return score;
   }
 
-  public void setScore(String percentage) {
+  public void setScore(float score) {
     this.score = score;
   }
 }

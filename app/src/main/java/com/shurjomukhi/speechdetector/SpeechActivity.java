@@ -1,6 +1,5 @@
 package com.shurjomukhi.speechdetector;
 
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
@@ -11,9 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -21,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.shurjomukhi.speechdetector.eventbus.SpeechEvent;
 import com.shurjomukhi.speechdetector.util.Constants;
@@ -100,7 +102,8 @@ public class SpeechActivity extends AppCompatActivity
       goTextView,
       aTextView,
       bTextView,
-      cTextView;
+      cTextView,
+      dTextView;
   private TextView sampleRateTextView, inferenceTimeTextView;
   private ImageView plusImageView, minusImageView;
   private SwitchCompat apiSwitchCompat;
@@ -111,7 +114,11 @@ public class SpeechActivity extends AppCompatActivity
   private HandlerThread backgroundThread;
   private Handler backgroundHandler;
 
-  /** Memory-map the model file in Assets. */
+  private boolean isRecognitionActive;
+
+  /**
+   * Memory-map the model file in Assets.
+   */
   private static MappedByteBuffer loadModelFile(AssetManager assets, String modelFilename)
       throws IOException {
     AssetFileDescriptor fileDescriptor = assets.openFd(modelFilename);
@@ -164,13 +171,8 @@ public class SpeechActivity extends AppCompatActivity
       throw new RuntimeException(e);
     }
 
-    tfLite.resizeInput(0, new int[] {RECORDING_LENGTH, 1});
-    tfLite.resizeInput(1, new int[] {1});
-
-    // Start the recording and recognition threads.
-    requestMicrophonePermission();
-    startRecording();
-    startRecognition();
+    tfLite.resizeInput(0, new int[]{RECORDING_LENGTH, 1});
+    tfLite.resizeInput(1, new int[]{1});
 
     sampleRateTextView = findViewById(R.id.sample_rate);
     inferenceTimeTextView = findViewById(R.id.inference_info);
@@ -197,6 +199,7 @@ public class SpeechActivity extends AppCompatActivity
     aTextView = findViewById(R.id.a);
     bTextView = findViewById(R.id.b);
     cTextView = findViewById(R.id.c);
+    dTextView = findViewById(R.id.d);
 
     apiSwitchCompat.setOnCheckedChangeListener(this);
 
@@ -220,16 +223,14 @@ public class SpeechActivity extends AppCompatActivity
             switch (newState) {
               case BottomSheetBehavior.STATE_HIDDEN:
                 break;
-              case BottomSheetBehavior.STATE_EXPANDED:
-                {
-                  bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_down);
-                }
-                break;
-              case BottomSheetBehavior.STATE_COLLAPSED:
-                {
-                  bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_up);
-                }
-                break;
+              case BottomSheetBehavior.STATE_EXPANDED: {
+                bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_down);
+              }
+              break;
+              case BottomSheetBehavior.STATE_COLLAPSED: {
+                bottomSheetArrowImageView.setImageResource(R.drawable.icn_chevron_up);
+              }
+              break;
               case BottomSheetBehavior.STATE_DRAGGING:
                 break;
               case BottomSheetBehavior.STATE_SETTLING:
@@ -239,7 +240,8 @@ public class SpeechActivity extends AppCompatActivity
           }
 
           @Override
-          public void onSlide(@NonNull View bottomSheet, float slideOffset) {}
+          public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+          }
         });
 
     plusImageView.setOnClickListener(this);
@@ -251,7 +253,7 @@ public class SpeechActivity extends AppCompatActivity
   private void requestMicrophonePermission() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       requestPermissions(
-          new String[] {android.Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO);
+          new String[]{android.Manifest.permission.RECORD_AUDIO}, REQUEST_RECORD_AUDIO);
     }
   }
 
@@ -374,7 +376,7 @@ public class SpeechActivity extends AppCompatActivity
     short[] inputBuffer = new short[RECORDING_LENGTH];
     float[][] floatInputBuffer = new float[RECORDING_LENGTH][1];
     float[][] outputScores = new float[1][labels.size()];
-    int[] sampleRateList = new int[] {SAMPLE_RATE};
+    int[] sampleRateList = new int[]{SAMPLE_RATE};
 
     // Loop, grabbing recorded data and running the recognition model on it.
     while (shouldContinueRecognition) {
@@ -418,7 +420,8 @@ public class SpeechActivity extends AppCompatActivity
 
               inferenceTimeTextView.setText(lastProcessingTimeMs + " ms");
 
-              Log.d(TAG, "run: result.foundCommand = " + result.foundCommand);
+              Log.d(TAG, "run: result.foundCommand = " + result.foundCommand +
+                  " result.score = " + (result.score * 100) + "%");
 
               // If we do have a new command, highlight the right list entry.
               if (!result.foundCommand.startsWith("_") && result.isNewCommand) {
@@ -469,14 +472,20 @@ public class SpeechActivity extends AppCompatActivity
                   case 2:
                     selectedTextView = cTextView;
                     break;
+                  case 3:
+                    selectedTextView = dTextView;
+                    break;
                 }
 
                 if (selectedTextView != null) {
                   //selectedTextView.setBackgroundResource(R.drawable.round_corner_text_bg_selected);
-                  final String score = Math.round(result.score * 100) + "%";
+                  String score = Math.round(result.score * 100) + "%";
                   Log.d(TAG, "run: score  = " + score);
-                  EventBus.getDefault().post(new SpeechEvent(result.foundCommand, score));
-                  selectedTextView.setText(selectedTextView.getText() + "\n" + score);
+
+                  EventBus.getDefault().post(new SpeechEvent(result.foundCommand, result.score));
+                  //stopSpeechRecognition();
+
+                  /*selectedTextView.setText(selectedTextView.getText() + "\n" + score);
                   selectedTextView.setTextColor(
                       getResources().getColor(android.R.color.holo_orange_light));
                   handler.postDelayed(
@@ -486,13 +495,13 @@ public class SpeechActivity extends AppCompatActivity
                           String originalString =
                               selectedTextView.getText().toString().replace(score, "").trim();
                           selectedTextView.setText(originalString);
-                          /*selectedTextView.setBackgroundResource(
-                              R.drawable.round_corner_text_bg_unselected);*/
+                          *//*selectedTextView.setBackgroundResource(
+                              R.drawable.round_corner_text_bg_unselected);*//*
                           selectedTextView.setTextColor(
                               getResources().getColor(android.R.color.darker_gray));
                         }
                       },
-                      750);
+                      750);*/
                 }
               }
             }
@@ -560,29 +569,68 @@ public class SpeechActivity extends AppCompatActivity
 
   @Override
   protected void onResume() {
+    Log.d(TAG, "onResume: ");
     super.onResume();
     startBackgroundThread();
+    /*if (isRecognitionActive) {
+      stopSpeechRecognition();
+    }*/
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    Log.d(TAG, "onPause: ");
   }
 
   @Override
   protected void onStop() {
+    Log.d(TAG, "onStop: ");
     super.onStop();
     stopBackgroundThread();
   }
 
+  @Override
+  protected void onStart() {
+    super.onStart();
+    Log.d(TAG, "onStart: ");
+  }
+
+  public void startSpeechRecognition() {
+    // Start the recording and recognition threads.
+    requestMicrophonePermission();
+    startRecording();
+    startRecognition();
+    isRecognitionActive = true;
+  }
+
+  public void stopSpeechRecognition() {
+    stopRecording();
+    stopRecognition();
+    isRecognitionActive = false;
+  }
+
   public void appleClick(View view) {
-    ListeningDialogFragment.newInstance(Constants.APPLE).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+    ListeningDialogFragment.newInstance(Constants.APPLE, R.drawable.ic_apple).show(getSupportFragmentManager(),
+        ListeningDialogFragment.TAG);
+    startSpeechRecognition();
   }
 
   public void birdClick(View view) {
-    ListeningDialogFragment.newInstance(Constants.BIRD).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+    ListeningDialogFragment.newInstance(Constants.BIRD, R.drawable.ic_bird).show(getSupportFragmentManager(),
+        ListeningDialogFragment.TAG);
+    startSpeechRecognition();
   }
 
   public void catClick(View view) {
-    ListeningDialogFragment.newInstance(Constants.CAT).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+    ListeningDialogFragment.newInstance(Constants.CAT, R.drawable.ic_cat).show(getSupportFragmentManager(),
+        ListeningDialogFragment.TAG);
+    startSpeechRecognition();
   }
 
   public void dogClick(View view) {
-    ListeningDialogFragment.newInstance(Constants.DOG).show(getSupportFragmentManager(), ListeningDialogFragment.TAG);
+    ListeningDialogFragment.newInstance(Constants.DOG, R.drawable.ic_dog).show(getSupportFragmentManager(),
+        ListeningDialogFragment.TAG);
+    startSpeechRecognition();
   }
 }
