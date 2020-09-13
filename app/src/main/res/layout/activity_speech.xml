@@ -38,7 +38,7 @@
       android:background="@color/tfe_color_primary"
       android:gravity="center"
       android:padding="10dp"
-      android:text="Tap and say one of the words below!"
+      android:text="Tap and speak one of the words below!"
       android:textColor="@android:color/white"
       android:textSize="16dp" />
 

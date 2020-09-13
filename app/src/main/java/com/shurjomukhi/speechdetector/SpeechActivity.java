@@ -613,24 +613,24 @@ public class SpeechActivity extends AppCompatActivity
   public void appleClick(View view) {
     ListeningDialogFragment.newInstance(Constants.APPLE, R.drawable.ic_apple).show(getSupportFragmentManager(),
         ListeningDialogFragment.TAG);
-    startSpeechRecognition();
+    //startSpeechRecognition();
   }
 
   public void birdClick(View view) {
     ListeningDialogFragment.newInstance(Constants.BIRD, R.drawable.ic_bird).show(getSupportFragmentManager(),
         ListeningDialogFragment.TAG);
-    startSpeechRecognition();
+    //startSpeechRecognition();
   }
 
   public void catClick(View view) {
     ListeningDialogFragment.newInstance(Constants.CAT, R.drawable.ic_cat).show(getSupportFragmentManager(),
         ListeningDialogFragment.TAG);
-    startSpeechRecognition();
+    //startSpeechRecognition();
   }
 
   public void dogClick(View view) {
     ListeningDialogFragment.newInstance(Constants.DOG, R.drawable.ic_dog).show(getSupportFragmentManager(),
         ListeningDialogFragment.TAG);
-    startSpeechRecognition();
+    //startSpeechRecognition();
   }
 }

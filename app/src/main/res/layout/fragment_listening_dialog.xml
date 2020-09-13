@@ -4,7 +4,6 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
-  android:gravity="center"
   android:orientation="vertical"
   android:padding="16dp">
 
@@ -15,7 +14,7 @@
     android:layout_centerInParent="true"
     app:lottie_autoPlay="true"
     app:lottie_loop="true"
-    app:lottie_rawRes="@raw/listening" />
+    app:lottie_rawRes="@raw/playing" />
 
   <TextView
     android:id="@+id/listeningTextView"
@@ -23,14 +22,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@id/animationView"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="90dp"
     android:gravity="center"
-    android:text="Listening..." />
+    tools:text="Playing..." />
 
   <ImageView
     android:id="@+id/itemImageView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="220dp"
+    android:layout_height="220dp"
     android:layout_centerInParent="true"
     android:alpha=".2"
     android:adjustViewBounds="true"
