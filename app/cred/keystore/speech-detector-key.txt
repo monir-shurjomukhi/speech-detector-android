@@ -1,0 +1,3 @@
+alias: speech-key-alias
+name: Shurjomukhi
+password: shurj0Droid

@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'de.undercouch.download'
 
 android {
   compileSdkVersion 30
@@ -12,10 +11,31 @@ android {
     versionName "1.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
+
+  signingConfigs {
+    config {
+      storeFile file('../app/cred/keystore/speech-detector-key.jks')
+      keyAlias = 'speech-key-alias'
+      storePassword 'shurj0Droid'
+      keyPassword 'shurj0Droid'
+    }
+  }
+
   buildTypes {
     release {
-      minifyEnabled false
+      signingConfig signingConfigs.config
+      shrinkResources true
+      minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+      applicationVariants.all { variant ->
+        def date = new Date()
+        def formattedDate = date.format('HHmmss-dd-MM-yyyy')
+        variant.outputs.all {
+          outputFileName = "SpeechDetector_${variant.buildType.name}_${defaultConfig.versionCode}_${formattedDate}.apk"
+          //outputFileName = "praniSheba_${formattedDate}.apk"
+        }
+      }
     }
   }
   aaptOptions {
