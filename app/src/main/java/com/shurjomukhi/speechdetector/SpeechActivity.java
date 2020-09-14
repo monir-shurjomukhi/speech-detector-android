@@ -480,7 +480,7 @@ public class SpeechActivity extends AppCompatActivity
                 if (selectedTextView != null) {
                   //selectedTextView.setBackgroundResource(R.drawable.round_corner_text_bg_selected);
                   String score = Math.round(result.score * 100) + "%";
-                  Log.d(TAG, "run: score  = " + score);
+                  Log.d(TAG, "run: command = " + result.foundCommand + " score  = " + score);
 
                   EventBus.getDefault().post(new SpeechEvent(result.foundCommand, result.score));
                   //stopSpeechRecognition();
