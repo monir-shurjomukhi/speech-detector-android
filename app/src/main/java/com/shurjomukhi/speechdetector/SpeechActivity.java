@@ -103,7 +103,8 @@ public class SpeechActivity extends AppCompatActivity
       aTextView,
       bTextView,
       cTextView,
-      dTextView;
+      dTextView,
+      pTextView;
   private TextView sampleRateTextView, inferenceTimeTextView;
   private ImageView plusImageView, minusImageView;
   private SwitchCompat apiSwitchCompat;
@@ -200,6 +201,7 @@ public class SpeechActivity extends AppCompatActivity
     bTextView = findViewById(R.id.b);
     cTextView = findViewById(R.id.c);
     dTextView = findViewById(R.id.d);
+    pTextView = findViewById(R.id.p);
 
     apiSwitchCompat.setOnCheckedChangeListener(this);
 
@@ -475,6 +477,9 @@ public class SpeechActivity extends AppCompatActivity
                   case 3:
                     selectedTextView = dTextView;
                     break;
+                  case 4:
+                    selectedTextView = pTextView;
+                    break;
                 }
 
                 if (selectedTextView != null) {
@@ -630,6 +635,12 @@ public class SpeechActivity extends AppCompatActivity
 
   public void dogClick(View view) {
     ListeningDialogFragment.newInstance(Constants.DOG, R.drawable.ic_dog).show(getSupportFragmentManager(),
+        ListeningDialogFragment.TAG);
+    //startSpeechRecognition();
+  }
+
+  public void pythonClick(View view) {
+    ListeningDialogFragment.newInstance(Constants.PYTHON, R.drawable.ic_python).show(getSupportFragmentManager(),
         ListeningDialogFragment.TAG);
     //startSpeechRecognition();
   }

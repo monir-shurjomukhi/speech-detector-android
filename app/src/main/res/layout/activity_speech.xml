@@ -40,280 +40,342 @@
       android:padding="10dp"
       android:text="Tap and speak one of the words below!"
       android:textColor="@android:color/white"
-      android:textSize="16dp" />
+      android:textSize="16sp" />
 
-    <LinearLayout
+    <ScrollView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@+id/textView"
       android:layout_alignParentStart="true"
-      android:layout_alignParentEnd="true"
-      android:layout_marginStart="16dp"
-      android:layout_marginTop="16dp"
-      android:layout_marginEnd="16dp"
-      android:layout_marginBottom="100dp"
-      android:orientation="vertical">
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <TextView
-          android:id="@+id/yes"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Yes" />
-
-        <TextView
-          android:id="@+id/no"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="No" />
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <TextView
-          android:id="@+id/up"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Up" />
-
-        <TextView
-          android:id="@+id/down"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Down" />
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <TextView
-          android:id="@+id/left"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Left" />
-
-        <TextView
-          android:id="@+id/right"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Right" />
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <TextView
-          android:id="@+id/on"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="On" />
-
-        <TextView
-          android:id="@+id/off"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Off" />
-      </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:weightSum="1">
-
-        <TextView
-          android:id="@+id/stop"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Stop" />
-
-        <TextView
-          android:id="@+id/go"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="10dp"
-          android:layout_weight=".5"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:gravity="center"
-          android:text="Go" />
-      </LinearLayout>
+      android:layout_alignParentEnd="true">
 
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical">
 
         <LinearLayout
-          android:id="@+id/apple"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="4dp"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
           android:layout_weight="1"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:onClick="appleClick"
-          android:orientation="vertical">
-
-          <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_apple" />
+          android:orientation="horizontal"
+          android:visibility="gone"
+          android:weightSum="1">
 
           <TextView
-            android:id="@+id/a"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/yes"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
             android:gravity="center"
-            android:text="Apple\n" />
+            android:text="Yes" />
+
+          <TextView
+            android:id="@+id/no"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="No" />
         </LinearLayout>
 
         <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="4dp"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
           android:layout_weight="1"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:onClick="birdClick"
-          android:orientation="vertical">
-
-          <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_bird" />
+          android:orientation="horizontal"
+          android:visibility="gone"
+          android:weightSum="1">
 
           <TextView
-            android:id="@+id/b"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/up"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
             android:gravity="center"
-            android:text="Bird\n" />
+            android:text="Up" />
+
+          <TextView
+            android:id="@+id/down"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="Down" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+          android:visibility="gone"
+          android:weightSum="1">
+
+          <TextView
+            android:id="@+id/left"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="Left" />
+
+          <TextView
+            android:id="@+id/right"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="Right" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+          android:visibility="gone"
+          android:weightSum="1">
+
+          <TextView
+            android:id="@+id/on"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="On" />
+
+          <TextView
+            android:id="@+id/off"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="Off" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+          android:visibility="gone"
+          android:weightSum="1">
+
+          <TextView
+            android:id="@+id/stop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="Stop" />
+
+          <TextView
+            android:id="@+id/go"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight=".5"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:gravity="center"
+            android:text="Go" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:weightSum="2">
+
+          <LinearLayout
+            android:id="@+id/apple"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:onClick="appleClick"
+            android:orientation="vertical">
+
+            <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_margin="10dp"
+              android:adjustViewBounds="true"
+              android:src="@drawable/ic_apple" />
+
+            <TextView
+              android:id="@+id/a"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:gravity="center"
+              android:text="Apple\n" />
+          </LinearLayout>
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:onClick="birdClick"
+            android:orientation="vertical">
+
+            <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_margin="10dp"
+              android:adjustViewBounds="true"
+              android:src="@drawable/ic_bird" />
+
+            <TextView
+              android:id="@+id/b"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:gravity="center"
+              android:text="Bird\n" />
+          </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:weightSum="2">
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:onClick="catClick"
+            android:orientation="vertical">
+
+            <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_margin="10dp"
+              android:adjustViewBounds="true"
+              android:src="@drawable/ic_cat" />
+
+            <TextView
+              android:id="@+id/c"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:gravity="center"
+              android:text="Cat\n" />
+          </LinearLayout>
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:onClick="dogClick"
+            android:orientation="vertical">
+
+            <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_margin="10dp"
+              android:adjustViewBounds="true"
+              android:src="@drawable/ic_dog" />
+
+            <TextView
+              android:id="@+id/d"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:gravity="center"
+              android:text="Dog\n" />
+          </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:weightSum="2">
+
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:onClick="pythonClick"
+            android:orientation="vertical">
+
+            <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_margin="10dp"
+              android:adjustViewBounds="true"
+              android:src="@drawable/ic_python" />
+
+            <TextView
+              android:id="@+id/p"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:gravity="center"
+              android:text="Python\n" />
+          </LinearLayout>
+
+          <LinearLayout
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_corner_text_bg_unselected"
+            android:orientation="vertical">
+
+            <ImageView
+              android:layout_width="match_parent"
+              android:layout_height="100dp"
+              android:layout_margin="10dp"
+              android:adjustViewBounds="true"
+              android:src="@drawable/ic_python" />
+
+            <TextView
+              android:id="@+id/q"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_margin="10dp"
+              android:gravity="center"
+              android:text="Qython\n" />
+          </LinearLayout>
         </LinearLayout>
       </LinearLayout>
-
-      <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="4dp"
-          android:layout_weight="1"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:onClick="catClick"
-          android:orientation="vertical">
-
-          <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_cat" />
-
-          <TextView
-            android:id="@+id/c"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="Cat\n" />
-        </LinearLayout>
-
-        <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_margin="4dp"
-          android:layout_weight="1"
-          android:background="@drawable/round_corner_text_bg_unselected"
-          android:onClick="dogClick"
-          android:orientation="vertical">
-
-          <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/ic_dog" />
-
-          <TextView
-            android:id="@+id/d"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="Dog\n" />
-        </LinearLayout>
-      </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
   </RelativeLayout>
 
   <include
