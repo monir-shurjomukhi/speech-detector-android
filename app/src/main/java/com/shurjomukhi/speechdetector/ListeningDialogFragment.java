@@ -136,7 +136,7 @@ public class ListeningDialogFragment extends DialogFragment {
   public void onSpeechEvent(SpeechEvent event) {
     //Toast.makeText(getActivity(), event.toString(), Toast.LENGTH_SHORT).show();
     Log.d(TAG, "onSpeechEvent: event = " + event);
-    if (event.getText().equalsIgnoreCase(getArguments().getString(ITEM_NAME)) && (event.getScore() * 100) >= 40.0f) {
+    if (event.getText().equalsIgnoreCase(getArguments().getString(ITEM_NAME)) && (event.getScore() * 100) >= 50.0f) {
       animationView.setAnimation(R.raw.trophy);
       animationView.setSpeed(2.0f);
       animationView.playAnimation();
