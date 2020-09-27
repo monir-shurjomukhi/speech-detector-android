@@ -60,4 +60,5 @@ dependencies {
   implementation 'org.tensorflow:tensorflow-lite:2.2.0'
   implementation 'com.airbnb.android:lottie:3.4.2'
   implementation 'org.greenrobot:eventbus:3.2.0'
+  implementation files('libs/musicg-1.4.2.0.jar')
 }
