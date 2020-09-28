@@ -422,8 +422,8 @@ public class SpeechActivity extends AppCompatActivity
 
               inferenceTimeTextView.setText(lastProcessingTimeMs + " ms");
 
-              Log.d(TAG, "run: result.foundCommand = " + result.foundCommand +
-                  " result.score = " + (result.score * 100) + "%");
+              /*Log.d(TAG, "run: result.foundCommand = " + result.foundCommand +
+                  " result.score = " + (result.score * 100) + "%");*/
 
               // If we do have a new command, highlight the right list entry.
               if (!result.foundCommand.startsWith("_") && result.isNewCommand) {
