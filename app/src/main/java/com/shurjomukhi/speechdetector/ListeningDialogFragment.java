@@ -97,6 +97,9 @@ public class ListeningDialogFragment extends DialogFragment {
           String itemName = getArguments().getString(ITEM_NAME).substring(0, 1).toUpperCase() +
               getArguments().getString(ITEM_NAME).substring(1);
           //listeningTextView.setText(String.format("Speak %s", itemName));
+          if (itemName.equalsIgnoreCase("python")) {
+            itemName = "অজগর";
+          }
           animateTextViewTextChange(listeningTextView, 500, String.format("Speak %s", itemName));
           animationView.setAnimation(R.raw.listening);
           animationView.setSpeed(2.0f);

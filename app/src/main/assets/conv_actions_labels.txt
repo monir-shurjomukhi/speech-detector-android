@@ -1,7 +1,3 @@
 _silence_
 _unknown_
-apple
-bird
-cat
-dog
 python
